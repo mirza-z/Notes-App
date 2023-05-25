@@ -3,19 +3,26 @@ import { useState } from 'react';
 import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NoteTakingInput } from './components/NoteTakingInput';
+import { HomeScreen } from './screens/HomeScreen';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { EditNoteScreen } from './screens/EditNoteScreen';
+import { RootStackParamList } from './types';
 
-export default function App() {
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
-  const saveNote = async (text: string)=>{
-    await AsyncStorage.setItem('note', text)
-  }
+export default function App() { 
 
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
+    <NavigationContainer>
       <StatusBar style="auto" />
-      <NoteTakingInput saveNote={saveNote}/>
-    </View>
+      <Stack.Navigator>
+
+        <Stack.Screen name='Home' component={HomeScreen} />
+        <Stack.Screen name='EditNote' component={EditNoteScreen} />
+        
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
