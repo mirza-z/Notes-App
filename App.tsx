@@ -18,7 +18,10 @@ export default function App() {
       <StatusBar style="auto" />
       <Stack.Navigator>
 
-        <Stack.Screen name='Home' component={HomeScreen} />
+        <Stack.Screen name='Home' component={HomeScreen} options={{
+          headerTitle: 'All Notes',
+          headerRight: ()
+        }}/>
         <Stack.Screen name='EditNote' component={EditNoteScreen} />
         
       </Stack.Navigator>
